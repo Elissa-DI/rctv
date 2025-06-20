@@ -1,6 +1,18 @@
-## 🧠 Real-Time Computer Vision
+# 🧠 Real-Time Stop Sign Detection with UART Control(RTCV)
 
 A Python-based real-time computer vision system that uses a webcam to detect **stop signs**, sends a **UART signal** to an Arduino to control a robot's behavior, and logs detection frames. Designed for robotics and embedded control demonstrations.
+
+---
+
+### 🌟 Features
+
+✅ Real-time webcam detection  
+✅ Stop sign recognition using Haar Cascades  
+✅ Simulated UART communication (Arduino optional)  
+✅ Auto-saving of detected stop sign frames  
+✅ "Stop Sign Detected" overlay for 3 seconds  
+✅ Throttled UART '0' messages (twice per second)  
+✅ Multithreaded control for smooth real-time behavior
 
 ---
 
@@ -8,12 +20,12 @@ A Python-based real-time computer vision system that uses a webcam to detect **s
 
 This project simulates an intelligent robot equipped with a camera that can:
 
-* **Detect stop signs** in real-time using OpenCV.
-* **Send UART commands** to an Arduino to control motion:
-
-  * Sends `'1'` to stop the robot.
-  * Sends `'0'` to keep moving.
-* **Capture and save frames** when a stop sign is detected (stored in the `/data` folder for logging or training purposes).
+- 🛑 **Detect stop signs** in real-time using OpenCV and Haar cascade.
+- 🔁 **Send UART commands** to an Arduino to control motion:
+  - Sends `'1'` to stop the robot (for 3 seconds).
+  - Sends `'0'` continuously to keep moving.
+- 💾 **Capture and save frames** of stop signs for logging or training (stored in `/data` folder).
+- 🎞️ **Overlay visual feedback** ("Stop Sign Detected") on video feed during stop period.
 
 ---
 
@@ -24,19 +36,18 @@ This project simulates an intelligent robot equipped with a camera that can:
 | 🖼️ Vision System     | Uses a webcam feed and Haar cascade classifier to detect stop signs in live video. |
 | 🧠 Decision Logic     | Triggers a stop signal (`'1'`) for 3 seconds when a stop sign is detected.         |
 | 📤 UART Communication | Sends data over serial (currently commented for testing without hardware).         |
-| 💾 Data Logging       | Saves images of detected frames for future training or verification.               |
+| 💾 Data Logging       | Saves images of detected stop signs with timestamps in the `data/` folder.         |
 
 ---
 
 ### 🛠️ Technologies Used
 
-* **Python 3.x**
-* **OpenCV** for image processing and object detection
-* **PySerial** (commented, used for UART communication)
-* **Arduino** (in logic, commented if hardware is not connected)
-* **Haar Cascade XML** classifier for stop sign detection
-* **Multithreading** for non-blocking signal sending
-* **Real-time video capture** using `cv2.VideoCapture`
+- 🐍 Python 3.x
+- 🎥 OpenCV for video capture and image processing
+- 📡 PySerial (UART communication — optional, commented)
+- ⚡ Arduino (for motor control — optional)
+- 🧠 Haar Cascade XML classifier for stop sign detection
+- 🔁 Python `threading` for smooth signal simulation
 
 ---
 
@@ -49,7 +60,7 @@ Real-Time-Computer-Vision/
 ├── stop_uart_control.ino         # Arduino sketch for motor control
 ├── data/                         # Folder to store detected images
 └── README.md                     # This documentation
-```
+````
 
 ---
 
@@ -62,14 +73,26 @@ pip install opencv-python pyserial
 ```
 
 2. **Ensure your webcam is connected.**
-3. **Place your trained `stop_sign_classifier.xml` in the same directory.**
+3. **Place your `stop_sign_classifier.xml` in the project root.**
 4. **Run the Python script:**
 
 ```bash
 python stop_sign_uart.py
 ```
 
-> 🔧 If Arduino is not connected, UART lines remain commented. You can uncomment them later to activate communication.
+> 🔧 If Arduino is not connected, UART lines remain commented. You can uncomment them later when testing with hardware.
+
+---
+
+### 🧪 Sample Output
+
+When a stop sign is detected:
+
+* Red rectangle appears around the sign.
+* "Stop Sign Detected" text shows on screen for 3 seconds.
+* Frame is saved to `/data` folder.
+* `'1'` is (simulated) sent over UART for 3 seconds.
+* `'0'` is printed every 0.5 seconds when no sign is found.
 
 ---
 
@@ -81,3 +104,10 @@ python stop_sign_uart.py
 * 🔗 [LinkedIn](https://www.linkedin.com/in/elissa-dusabe-415161256/)
 
 ---
+
+### 📘 License
+
+This project is for academic and educational use only. No license is enforced.
+
+---
+
