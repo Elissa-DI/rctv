@@ -1,0 +1,83 @@
+## 🧠 Real-Time Computer Vision
+
+A Python-based real-time computer vision system that uses a webcam to detect **stop signs**, sends a **UART signal** to an Arduino to control a robot's behavior, and logs detection frames. Designed for robotics and embedded control demonstrations.
+
+---
+
+### 🚦 Project Description
+
+This project simulates an intelligent robot equipped with a camera that can:
+
+* **Detect stop signs** in real-time using OpenCV.
+* **Send UART commands** to an Arduino to control motion:
+
+  * Sends `'1'` to stop the robot.
+  * Sends `'0'` to keep moving.
+* **Capture and save frames** when a stop sign is detected (stored in the `/data` folder for logging or training purposes).
+
+---
+
+### ⚙️ System Functionalities
+
+| Component             | Description                                                                        |
+| --------------------- | ---------------------------------------------------------------------------------- |
+| 🖼️ Vision System     | Uses a webcam feed and Haar cascade classifier to detect stop signs in live video. |
+| 🧠 Decision Logic     | Triggers a stop signal (`'1'`) for 3 seconds when a stop sign is detected.         |
+| 📤 UART Communication | Sends data over serial (currently commented for testing without hardware).         |
+| 💾 Data Logging       | Saves images of detected frames for future training or verification.               |
+
+---
+
+### 🛠️ Technologies Used
+
+* **Python 3.x**
+* **OpenCV** for image processing and object detection
+* **PySerial** (commented, used for UART communication)
+* **Arduino** (in logic, commented if hardware is not connected)
+* **Haar Cascade XML** classifier for stop sign detection
+* **Multithreading** for non-blocking signal sending
+* **Real-time video capture** using `cv2.VideoCapture`
+
+---
+
+### 📂 Project Structure
+
+```bash
+Real-Time-Computer-Vision/
+├── stop_sign_uart.py             # Main Python script (UART + detection)
+├── stop_sign_classifier.xml      # Haar cascade for stop sign detection
+├── stop_uart_control.ino         # Arduino sketch for motor control
+├── data/                         # Folder to store detected images
+└── README.md                     # This documentation
+```
+
+---
+
+### 🚀 How to Run
+
+1. **Install dependencies:**
+
+```bash
+pip install opencv-python pyserial
+```
+
+2. **Ensure your webcam is connected.**
+3. **Place your trained `stop_sign_classifier.xml` in the same directory.**
+4. **Run the Python script:**
+
+```bash
+python stop_sign_uart.py
+```
+
+> 🔧 If Arduino is not connected, UART lines remain commented. You can uncomment them later to activate communication.
+
+---
+
+### 👤 Author
+
+**Elissa Dusabe Iradukunda**
+
+* 🌐 [GitHub](https://github.com/Elissa-DI)
+* 🔗 [LinkedIn](https://www.linkedin.com/in/elissa-dusabe-415161256/)
+
+---
